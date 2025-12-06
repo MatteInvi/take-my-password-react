@@ -11,16 +11,26 @@ export default function ArchiveTable() {
   const [selectedDato, setSelectedDato] = useState(null);
   const [deleteDato, setDeleteDato] = useState(null);
 
-  // Chiamata al back-end per ricevere i dati da visulizzare con incluso il token salvato in locale 
+  // Chiamata al back-end per ricevere i dati da visulizzare con incluso il token salvato in locale
   const fetchArchive = () => {
     const token = localStorage.getItem("token");
     fetch("http://localhost:8080/api/archive", {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Errore nel caricamento dei dati");
+        }
+        return res.json();
+      })
       .then((data) => {
         setArchive(data);
         setFilteredArchive(data);
+      })
+      .catch((err) => {
+        console.error("Errore fetch:", err);
+        setArchive([]);
+        setFilteredArchive([]);
       })
       .finally(() => setLoading(false));
   };
@@ -50,15 +60,14 @@ export default function ArchiveTable() {
       .then((res) => {
         if (!res.ok) throw new Error("Errore durante eliminazione");
         fetchArchive();
-        setDeleteDato(null); 
+        setDeleteDato(null);
       })
       .catch((err) => alert(err.message));
   };
 
-  // Schermata di carimaento/ dati non disponibili
-  if (loading) return <p style={{ textAlign: "center" }}>Loading...</p>;
-  if (!archive.length)
-    return <p style={{ textAlign: "center" }}>Nessun dato disponibile</p>;
+  // Schermata di caricamento/ dati non disponibili
+  if (loading) return <p style={{ textAlign: "center" }}>Loading...</p>  
+ 
 
   // Pagina utente con la gestione dei dati
   return (
@@ -137,7 +146,11 @@ export default function ArchiveTable() {
       {/* Modal Dettagli */}
       {selectedDato && (
         <div className="modal-overlay" onClick={() => setSelectedDato(null)}>
-          <div id="details-modal" className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div
+            id="details-modal"
+            className="modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
             <h2>Dettagli</h2>
             <p>
               <strong>Piattaforma:</strong> {selectedDato.platform}

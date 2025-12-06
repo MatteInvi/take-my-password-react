@@ -33,7 +33,7 @@ export default function Navbar() {
         </ul>
       </div>
       <div>
-        <ul>
+        <ul className="nav-list">
           <li
             className={`nav-item ${
               location.pathname === "/login" ? "active" : ""
@@ -41,7 +41,7 @@ export default function Navbar() {
           >
             {isLogged ? (
               <button
-                className="nav-link button-login-logout"
+                id="logout-button"
                 onClick={handleLogout}
               >
                 Logout
@@ -51,6 +51,11 @@ export default function Navbar() {
                 Login
               </Link>
             )}
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/register">
+              Registrati
+            </Link>
           </li>
         </ul>
       </div>

@@ -148,7 +148,7 @@ h1 {
 
 /* Barra superiore home ricerca dato */
 #top-bar {
-  width: 50%;
+  width: 60%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -198,7 +198,7 @@ h1 {
 /* Stile Principale della Tabella  */
 #table_index {
   width: 60%;
-  margin: 40px auto;
+  margin: 20px auto;
   border-collapse: collapse;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
   border-radius: 12px;

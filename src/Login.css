@@ -11,7 +11,6 @@
 .login-title {
     text-align: center;
     margin-bottom: 20px;
-    color: #ffb84d;
 }
 
 .login-form {
@@ -43,18 +42,12 @@
     margin-bottom: 10px;
 }
 
-.button-login-logout {
-    background: linear-gradient(145deg, #2979ff, #4da1ff);
-    color: white;
+.button-login{
+    color: black;
+    background-color: yellow;
+    padding: 8px 12px;
     border-radius: 8px;
-    padding: 10px;
     border: none;
-    cursor: pointer;
     font-weight: bold;
-    transition: background 0.3s, box-shadow 0.3s;
-}
 
-.button-login-logout:hover {
-    background: linear-gradient(145deg, #4da1ff, #74b5ff);
-    box-shadow: 0 6px 16px rgba(41, 121, 255, 0.7);
 }

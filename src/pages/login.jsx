@@ -50,7 +50,7 @@ export default function Login() {
           required
         />
 
-        <button type="submit" className="button button-login-logout">
+        <button type="submit" className="button-login">
           Login
         </button>
       </form>
