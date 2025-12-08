@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import "../Login.css";
 
 export default function Login() {
@@ -54,6 +54,11 @@ export default function Login() {
           Login
         </button>
       </form>
+      <p>
+        <Link id="password-recovery" to="/reset-password">
+          Recupera password
+        </Link>
+      </p>
     </div>
   );
 }

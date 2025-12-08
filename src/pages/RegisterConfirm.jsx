@@ -31,7 +31,7 @@ const ConfirmMail = () => {
       })
       .catch((err) => {
         console.error(err);
-        setMessage("Errore nella verifica dell'email.");
+        setMessage("" + err);
       })
       .finally(() => setLoading(false));
   }, [token]);

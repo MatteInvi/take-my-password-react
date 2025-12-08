@@ -40,10 +40,7 @@ export default function Navbar() {
             }`}
           >
             {isLogged ? (
-              <button
-                id="logout-button"
-                onClick={handleLogout}
-              >
+              <button id="logout-button" onClick={handleLogout}>
                 Logout
               </button>
             ) : (
@@ -53,9 +50,13 @@ export default function Navbar() {
             )}
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/register">
-              Registrati
-            </Link>
+            {isLogged ? (
+              null
+            ) : (
+              <Link className="nav-link" to="/register">
+                Registrati
+              </Link>
+            )}
           </li>
         </ul>
       </div>
