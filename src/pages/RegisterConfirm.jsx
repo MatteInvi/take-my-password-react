@@ -19,7 +19,9 @@ const ConfirmMail = () => {
       return;
     }
 
-    fetch(`http://localhost:8080/api/auth/confirm-email?token=${token}`)
+    fetch(
+      `https://take-my-password-1.onrender.com/api/auth/confirm-email?token=${token}`
+    )
       .then((res) => {
         if (!res.ok) throw new Error("Token non valido o già confermato");
         return res.text();

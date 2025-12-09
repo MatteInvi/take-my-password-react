@@ -30,7 +30,7 @@ export default function ArchiveTable() {
     const token = localStorage.getItem("token");
 
     try {
-      let url = `http://localhost:8080/api/archive?page=${currentPage}&size=${itemsPerPage}`;
+      let url = `https://take-my-password-1.onrender.com/api/archive?page=${currentPage}&size=${itemsPerPage}`;
 
       // Aggiungi il termine di ricerca all'URL se presente
       if (searchTerm && searchTerm.trim() !== "") {
@@ -94,9 +94,12 @@ export default function ArchiveTable() {
   const confirmDelete = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      await axios.delete(`http://localhost:8080/api/archive/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.delete(
+        `https://take-my-password-1.onrender.com/api/archive/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       // Ricarica la pagina corrente dopo l'eliminazione
       fetchArchive();
@@ -164,7 +167,7 @@ export default function ArchiveTable() {
               name="searchTerm"
               id="search"
             />
-            <button type="submit">Cerca</button>
+            <button type="submit" className="button button-add">Cerca</button>
           </form>
         </div>
       </div>

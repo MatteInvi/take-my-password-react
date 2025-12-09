@@ -311,7 +311,7 @@ h1 {
 
 .archive-form input, #search{
   height: 25px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: none;
   padding: 5px;
 }

@@ -17,7 +17,7 @@ const ConfirmResetPassword = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const API_BASE_URL = "http://localhost:8080/api/auth";
+  const API_BASE_URL = "https://take-my-password-1.onrender.com/api/auth";
 
   const handleLogout = () => {
     localStorage.removeItem("token");

@@ -23,8 +23,8 @@ function ArchiveForm({ dato, onSuccess, onCancel }) {
 
     const method = dato?.id ? "PUT" : "POST";
     const url = dato?.id
-      ? `http://localhost:8080/api/archive/${dato.id}`
-      : "http://localhost:8080/api/archive/create";
+      ? `https://take-my-password-1.onrender.com/api/archive/${dato.id}`
+      : "https://take-my-password-1.onrender.com/api/archive/create";
 
     fetch(url, {
       method,
