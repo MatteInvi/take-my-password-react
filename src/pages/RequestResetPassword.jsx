@@ -10,7 +10,7 @@ const RequestResetPassword = () => {
 
   const API_BASE_URL = "https://take-my-password-1.onrender.com/api/auth";
 
-  //Chiamata post al back-end con invio email di recupero password
+  //Chiamata post al back-end con invio email di recupero password//
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
