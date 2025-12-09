@@ -18,7 +18,22 @@ export default function Login() {
         body: JSON.stringify({ username, password }),
       });
 
-      if (!res.ok) throw new Error("Username o password errata");
+      
+      if (!res.ok){
+        // 1. Leggi il corpo della risposta.
+        // Assumiamo che il backend restituisca un JSON anche in caso di errore.
+        const errorBody = await res.json();
+
+        // 2. Determina quale campo contiene il messaggio di errore
+        // (potrebbe essere 'message', 'error', o 'detail' a seconda del backend).
+        const errorMessage =
+          errorBody.message ||
+          errorBody.error ||
+          "Errore sconosciuto durante il login.";
+
+        // 3. Lancia l'eccezione con lo stato HTTP e il messaggio dal backend.
+        throw new Error(`Errore: ${errorMessage}`);
+      }  
       const data = await res.json();
       localStorage.setItem("token", data.token); 
       navigate("/archive"); 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -15,8 +15,14 @@ const ConfirmResetPassword = () => {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const API_BASE_URL = "http://localhost:8080/api/auth"; 
+  const API_BASE_URL = "http://localhost:8080/api/auth";
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   useEffect(() => {
     if (!token) {
@@ -41,7 +47,6 @@ const ConfirmResetPassword = () => {
 
     setLoading(true);
 
-
     const url = `${API_BASE_URL}/reset-password/confirm?token=${encodeURIComponent(
       token
     )}`;
@@ -60,22 +65,37 @@ const ConfirmResetPassword = () => {
       setError(errorMessage);
     } finally {
       setLoading(false);
+      setTimeout(() => {
+        handleLogout();
+      }, 5000);
     }
   };
 
   if (!token && !error) {
-    return <p>Caricamento...</p>;
+    return (
+      <div>
+        <h2
+          style={{
+            textAlign: "center",
+            margin: "50px",
+          }}
+        >
+          Caricamento...
+        </h2>
+      </div>
+    );
   }
 
-  if (error && !loading) {
+  if (!token) {
     return (
       <div
         style={{
           maxWidth: "400px",
-          margin: "auto",
+          margin: "50px auto",
           padding: "20px",
-          border: "1px solid #ccc",
-          borderRadius: "5px",
+          backgroundColor: "#2c2c2c",
+          color: "white",
+          borderRadius: "15px",
         }}
       >
         <h2>Reset Password</h2>
@@ -92,7 +112,7 @@ const ConfirmResetPassword = () => {
         padding: "20px",
         backgroundColor: "#2c2c2c",
         color: "whitesmoke",
-        borderRadius: "5px",
+        borderRadius: "15px",
       }}
     >
       <h2>Imposta Nuova Password</h2>
@@ -133,7 +153,7 @@ const ConfirmResetPassword = () => {
         </div>
         <button
           type="submit"
-          disabled={loading || !newPassword || newPassword !== confirmPassword}
+          disabled={loading}
           style={{
             padding: "10px 15px",
             backgroundColor: loading ? "#aaa" : "#007bff",

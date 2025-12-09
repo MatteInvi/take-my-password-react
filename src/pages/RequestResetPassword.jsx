@@ -41,7 +41,7 @@ const RequestResetPassword = () => {
         padding: "20px",
         backgroundColor: "#2c2c2c",
         color: "white",
-        borderRadius: "5px",
+        borderRadius: "15px",
       }}
     >
       <h2>Richiesta Reset Password</h2>
